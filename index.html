@@ -4,27 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NeuralFocusAI Academy | Premium Certification</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #050505;
-            --card-bg: #111111;
+            --bg-color: #020202;
+            --card-bg: rgba(20, 20, 20, 0.7);
             --accent-color: #007aff;
-            --accent-glow: rgba(0, 122, 255, 0.4);
+            --accent-glow: rgba(0, 122, 255, 0.5);
             --text-main: #ffffff;
-            --text-dim: #a0a0a0;
+            --text-dim: #b0b0b0;
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        
         body { 
             font-family: 'Inter', sans-serif; 
             background-color: var(--bg-color); 
             color: var(--text-main); 
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Hero Section */
+        h1, h2, h3, .logo-box { font-family: 'Space+Grotesk', sans-serif; }
+
+        /* --- BACKGROUND ANIMATION --- */
+        .bg-glow {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% -20%, #001f3f 0%, #020202 70%);
+            z-index: -1;
+        }
+
+        /* --- LOGIN SCREEN --- */
         #login-screen {
             height: 100vh;
             display: flex;
@@ -32,236 +45,324 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 20px;
-            background: radial-gradient(circle at center, #111 0%, #050505 100%);
+            padding: 30px;
         }
 
         .logo-box {
             font-weight: 800;
-            font-size: 2rem;
-            letter-spacing: -1px;
+            font-size: 2.8rem;
+            letter-spacing: -2px;
             margin-bottom: 10px;
             text-transform: uppercase;
         }
 
-        .logo-box span { color: var(--accent-color); }
+        .logo-box span { color: var(--accent-color); text-shadow: 0 0 20px var(--accent-glow); }
 
         .input-group {
-            margin-top: 30px;
+            margin-top: 40px;
             width: 100%;
-            max-width: 300px;
+            max-width: 350px;
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
         }
 
         input {
             width: 100%;
-            padding: 15px;
-            background: #1a1a1a;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid #333;
-            border-radius: 8px;
+            border-radius: 12px;
             color: white;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-size: 1rem;
             outline: none;
-            transition: 0.3s;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        input:focus { border-color: var(--accent-color); box-shadow: 0 0 10px var(--accent-glow); }
+        input:focus { 
+            border-color: var(--accent-color); 
+            box-shadow: 0 0 20px var(--accent-glow);
+            transform: scale(1.02);
+        }
 
         .btn-main {
-            background: var(--accent-color);
+            background: linear-gradient(135deg, var(--accent-color), #004fb0);
             color: white;
-            padding: 15px 30px;
+            padding: 18px 35px;
             border: none;
-            border-radius: 8px;
-            font-weight: 600;
+            border-radius: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             cursor: pointer;
             width: 100%;
             transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
-        /* Academy Layout */
-        #academy-screen { display: none; padding: 20px; }
+        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 15px 30px var(--accent-glow); }
+
+        /* --- ACADEMY SCREEN --- */
+        #academy-screen { display: none; max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
         
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
-            border-bottom: 1px solid #222;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 4px;
+            background: #222;
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        #progress-fill {
+            width: 0%;
+            height: 100%;
+            background: var(--accent-color);
+            transition: 0.5s ease;
+            box-shadow: 0 0 10px var(--accent-glow);
         }
 
         .course-grid {
-            margin-top: 30px;
+            margin-top: 40px;
             display: grid;
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
 
         .module-card {
             background: var(--card-bg);
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid #222;
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(15px);
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.4s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .module-card:hover { border-color: var(--accent-color); transform: translateY(-5px); }
-        .module-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: var(--accent-color); }
-        .module-card p { color: var(--text-dim); font-size: 0.9rem; }
+        .module-card:hover { 
+            border-color: var(--accent-color); 
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(30, 30, 30, 0.8);
+        }
 
-        /* Content Viewer */
+        .module-card h3 { color: var(--accent-color); margin-bottom: 15px; font-size: 1.3rem; }
+        .module-card p { color: var(--text-dim); font-size: 0.95rem; }
+
+        /* --- CONTENT VIEWER --- */
         #content-viewer {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: var(--bg-color);
-            z-index: 100;
-            padding: 30px;
+            z-index: 1000;
+            padding: 40px 20px;
             overflow-y: auto;
         }
 
         .content-body { max-width: 800px; margin: 0 auto; }
-        .content-body h2 { font-size: 2rem; margin-bottom: 20px; }
-        .content-body p { margin-bottom: 20px; color: var(--text-dim); }
+        .content-body h2 { font-size: 2.5rem; margin-bottom: 30px; color: var(--accent-color); }
+        .content-body p { margin-bottom: 25px; font-size: 1.1rem; color: #ddd; }
+        .content-body strong { color: var(--accent-color); }
 
-        /* Certificate Styles */
+        /* --- CERTIFICATE SECTION --- */
         #cert-section {
-            margin-top: 40px;
+            margin-top: 60px;
             text-align: center;
             display: none;
+            animation: fadeIn 1s ease;
         }
 
-        canvas { display: none; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         footer {
-            margin-top: 50px;
-            padding: 30px;
+            margin-top: 80px;
+            padding: 40px;
             text-align: center;
-            border-top: 1px solid #222;
-            color: var(--text-dim);
-            font-size: 0.8rem;
+            border-top: 1px solid var(--glass-border);
         }
-        footer a { color: var(--accent-color); text-decoration: none; margin: 0 10px; }
+
+        footer a { 
+            color: var(--accent-color); 
+            text-decoration: none; 
+            margin: 0 15px; 
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        footer a:hover { text-shadow: 0 0 10px var(--accent-glow); }
+
+        canvas { display: none; }
 
     </style>
 </head>
 <body>
 
+    <div class="bg-glow"></div>
+
     <div id="login-screen">
-        <div class="logo-box">NeuralFocus<span>AI</span> Academy</div>
-        <p style="color: #666;">Global Strategic Intelligence Program</p>
+        <div class="logo-box">NeuralFocus<span>AI</span></div>
+        <p style="color: var(--text-dim); letter-spacing: 2px;">ACADEMY • ELITE TRAINING</p>
         <div class="input-group">
-            <input type="text" id="user-name" placeholder="Your Full Name">
-            <button class="btn-main" onclick="startAcademy()">Enter Academy</button>
+            <input type="text" id="user-name" placeholder="Enter Full Name">
+            <button class="btn-main" onclick="startAcademy()">Initialize Training</button>
         </div>
     </div>
 
     <div id="academy-screen">
         <header>
-            <div class="logo-box" style="font-size: 1.2rem;">NeuralFocus<span>AI</span></div>
-            <span id="welcome-msg" style="font-size: 0.8rem; color: #666;"></span>
+            <div>
+                <div class="logo-box" style="font-size: 1.4rem;">NeuralFocus<span>AI</span></div>
+                <div id="greeting-turkish" style="font-size: 0.9rem; color: var(--accent-color); font-weight: 700;"></div>
+            </div>
+            <div style="text-align: right;">
+                <span id="welcome-msg" style="font-size: 0.85rem; color: var(--text-dim);"></span>
+            </div>
         </header>
 
-        <section style="margin-top: 40px;">
-            <h1 style="font-size: 1.8rem; margin-bottom: 10px;">Your Certification Path</h1>
-            <p style="color: #888;">Complete all modules to unlock your Neural Excellence Certificate.</p>
-        </section>
-
-        <div class="course-grid">
-            <div class="module-card" onclick="openModule(0)">
-                <h3>Module 1: The Neural Genesis</h3>
-                <p>Understand the origins of AI and how it evolved into a global economic driver.</p>
-            </div>
-            <div class="module-card" onclick="openModule(1)">
-                <h3>Module 2: Decoding Intelligence</h3>
-                <p>Demystifying how Neural Networks process data to solve real-world problems.</p>
-            </div>
-            <div class="module-card" onclick="openModule(2)">
-                <h3>Module 3: Universal Impact</h3>
-                <p>Why size doesn't matter: AI strategies for small shops and global corporations.</p>
-            </div>
-            <div class="module-card" onclick="openModule(3)">
-                <h3>Module 4: The NeuralFocus Protocol</h3>
-                <p>How we implement high-end technology to scale your specific business sector.</p>
-            </div>
+        <div class="progress-bar-container">
+            <div id="progress-fill"></div>
         </div>
 
+        <section style="margin-top: 50px;">
+            <h1 style="font-size: 2.2rem; margin-bottom: 10px;">The Neural Path</h1>
+            <p style="color: var(--text-dim);">Complete the curriculum to unlock your professional certification.</p>
+        </section>
+
+        <div class="course-grid" id="module-grid">
+            </div>
+
         <div id="cert-section">
-            <div style="background: #111; padding: 30px; border-radius: 12px; border: 2px dashed var(--accent-color);">
-                <h3>Course Completed!</h3>
-                <p style="margin-bottom: 20px;">Your certificate is ready for generation.</p>
-                <button class="btn-main" onclick="generateCertificate()">Download My Certificate</button>
+            <div style="background: linear-gradient(145deg, #111, #050505); padding: 40px; border-radius: 25px; border: 1px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 122, 255, 0.2);">
+                <h2 style="margin-bottom: 10px;">Curriculum Completed</h2>
+                <p style="color: var(--text-dim); margin-bottom: 30px;">Your strategic intelligence certification is now available.</p>
+                <button class="btn-main" onclick="generateCertificate()">Download Diploma</button>
             </div>
         </div>
 
         <footer>
-            <p>NeuralFocusAI Academy &copy; 2026</p>
-            <div style="margin-top: 10px;">
-                <a href="mailto:menteglobalempresarial@gmail.com">Email</a> | 
-                <a href="https://wa.me/542246496971">WhatsApp</a> |
-                <a href="https://lucas12981.github.io/NeuralfocusIA/">Official Site</a>
+            <p style="font-size: 0.9rem; margin-bottom: 15px;">&copy; 2026 NeuralFocusAI. Powered by Neural Strategic Intelligence.</p>
+            <div>
+                <a href="https://wa.me/542246496971">WhatsApp</a>
+                <a href="mailto:menteglobalempresarial@gmail.com">Contact Support</a>
+                <a href="https://lucas12981.github.io/NeuralfocusIA/">Main Hub</a>
             </div>
         </footer>
     </div>
 
     <div id="content-viewer">
-        <button onclick="closeModule()" style="background: none; border: none; color: var(--accent-color); font-weight: 600; margin-bottom: 20px; cursor: pointer;">&larr; Back to Modules</button>
-        <div id="module-content" class="content-body"></div>
+        <div class="content-body">
+            <button onclick="closeModule()" style="background: none; border: none; color: var(--accent-color); font-weight: 700; margin-bottom: 30px; cursor: pointer; font-size: 1rem;">&larr; RETURN TO DASHBOARD</button>
+            <div id="module-content"></div>
+        </div>
     </div>
 
-    <canvas id="certCanvas" width="800" height="600"></canvas>
+    <canvas id="certCanvas" width="1600" height="1200"></canvas>
 
     <script>
         let userName = "";
         let completedModules = new Set();
-        const totalModules = 4;
 
         const modules = [
             {
-                title: "The Neural Genesis: From Concept to Reality",
-                content: `<p>Artificial Intelligence is not new, but its power is. Born in the 1950s with Alan Turing's vision, it has evolved from simple logic machines to complex neural networks that mimic the human brain.</p>
-                          <p>For decades, AI was a laboratory dream. Today, it is the heartbeat of the global economy. Understanding its history is crucial to realize that this is not a trend; it is the definitive technological shift of our century.</p>
-                          <p>In this module, we explore how data became the new oil and how algorithms became the new refinery. Whether you run a local market or a shipping empire, the foundation is the same: Intelligence is the ultimate competitive advantage.</p>`
+                title: "The Genesis: The Architecture of Thought",
+                desc: "Explore the evolution of AI from Turing's logic to modern neural networks.",
+                content: `<h2>The Genesis of Machine Intelligence</h2>
+                          <p>Artificial Intelligence began as a philosophical question: <strong>Can machines think?</strong> In 1950, Alan Turing proposed a test that changed everything. Today, we don't just ask if they think; we ask how they can <strong>outperform</strong> our logic.</p>
+                          <p>From the first "Electronic Brains" to the massive <strong>Neural Networks</strong> of 2026, the goal has been the same: to process data with the complexity of a human brain but with the speed of light.</p>
+                          <p>For a business, understanding this history is crucial. It proves that AI isn't a temporary trend, but a fundamental evolution of human productivity. You are not just using a tool; you are adopting a <strong>new form of strategic energy</strong>.</p>`
             },
             {
-                title: "Decoding Intelligence: How Machines Think",
-                content: `<p>AI works through 'Machine Learning' and 'Deep Learning'. Imagine a system that doesn't need to be told what to do, but learns by observing patterns in your sales, your customers, and your inventory.</p>
-                          <p>This "Neural" approach allows businesses to predict future trends instead of just reacting to the past. When we talk about AI, we talk about automated decision-making at a speed impossible for a human brain.</p>
-                          <p>For a business owner, this means having a digital brain that works 24/7 optimizing every cent and every minute of your operation.</p>`
+                title: "Neural Decoding: Beyond the Algorithm",
+                desc: "Demystifying Machine Learning and how it processes commercial data.",
+                content: `<h2>Decoding the Neural System</h2>
+                          <p>How does AI "learn"? It doesn't follow rigid instructions; it identifies patterns. <strong>Machine Learning</strong> allows a system to analyze millions of sales, customer behaviors, and market fluctuations to find the "hidden signal" in the noise.</p>
+                          <p>Imagine a digital brain that remembers every single interaction your business has ever had. This brain can predict <strong>what your customer wants before they even know they want it</strong>.</p>
+                          <p>At this level, "Big Data" is no longer a problem; it becomes your primary weapon. Strategic intelligence is the art of turning raw information into <strong>profitable decisions</strong>.</p>`
             },
             {
-                title: "Universal Impact: Small Shops vs. Corporations",
-                content: `<p>A common myth is that AI is only for giants like Google or Amazon. This is false. In fact, a small family business has the most to gain from AI.</p>
-                          <p>While a corporation uses AI for complex logistics, a local shop can use it to automate customer service, manage local demand, and compete with big chains through hyper-personalized marketing.</p>
-                          <p>AI levels the playing field. It gives the small entrepreneur the tools of a multinational. It's about efficiency, not size.</p>`
+                title: "Universal Scale: The Democratization of Power",
+                desc: "Why AI is the ultimate equalizer for small shops and global empires.",
+                content: `<h2>Scale Does Not Matter</h2>
+                          <p>A global myth suggests that AI is only for tech giants. <strong>This is a strategic error.</strong> In reality, a local merchant or a family business has the most to gain from neural implementation.</p>
+                          <p>While large corporations use AI to manage complexity, small businesses use it to <strong>eliminate limitations</strong>. Automation allows you to operate like a company of 50 people with only a smartphone.</p>
+                          <p>In 2026, the competition is not between the "Big" and the "Small", but between the <strong>Intelligent</strong> and the <strong>Traditional</strong>. NeuralFocusAI bridges that gap for every sector.</p>`
             },
             {
-                title: "The NeuralFocus Protocol: Scaling Your Success",
-                content: `<p>At NeuralFocusAI, we don't just "install" software. We transform your business DNA. Our protocol focuses on identifying the specific bottleneck in your industry—be it sales, logistics, or management—and injecting a neural solution.</p>
-                          <p>Coming from Argentina, we understand the resilience and adaptability needed in fluctuating markets. Our goal is to accompany you in this transformation, ensuring that your business in Turkey or anywhere in the world becomes a leader in the digital era.</p>
-                          <p>You have finished the training. You are now ready to lead with intelligence. Download your certificate below.</p>`
+                title: "The NeuralFocus Protocol: Future Implementation",
+                desc: "Our methodology to transform your industry with AI-driven growth.",
+                content: `<h2>NeuralFocusAI Strategy</h2>
+                          <p>We don't just provide technology; we provide <strong>Transformation</strong>. Our protocol analyzes your specific business sector—whether it's retail, services, or manufacturing—to find where AI can create a 10x growth.</p>
+                          <p>By leveraging our expertise, businesses transition from manual struggle to <strong>autonomous success</strong>. We are the bridge between your current operation and your global potential.</p>
+                          <p>You have now completed the fundamental training. You possess the vision to lead the <strong>Neural Revolution</strong>. Your certification awaits.</p>`
             }
         ];
 
+        function setTurkishGreeting() {
+            const hour = new Date().getHours();
+            let greeting = "";
+            if (hour >= 5 && hour < 12) greeting = "Günaydın (Good Morning)";
+            else if (hour >= 12 && hour < 18) greeting = "Tünaydın (Good Afternoon)";
+            else greeting = "İyi Akşamlar (Good Evening)";
+            document.getElementById('greeting-turkish').innerText = greeting;
+        }
+
+        function renderGrid() {
+            const grid = document.getElementById('module-grid');
+            grid.innerHTML = modules.map((m, i) => `
+                <div class="module-card" onclick="openModule(${i})">
+                    <div>
+                        <span style="font-size: 0.7rem; color: #555; font-weight: 800;">0${i+1}</span>
+                        <h3>${m.title}</h3>
+                        <p>${m.desc}</p>
+                    </div>
+                    <div style="margin-top: 20px; font-size: 0.8rem; font-weight: 700; color: ${completedModules.has(i) ? '#00ff88' : '#333'}">
+                        ${completedModules.has(i) ? '✓ COMPLETED' : '→ START LESSON'}
+                    </div>
+                </div>
+            `).join('');
+        }
+
         function startAcademy() {
-            userName = document.getElementById('user-name').value;
-            if(!userName) return alert("Please enter your name");
+            userName = document.getElementById('user-name').value.trim();
+            if(!userName) return alert("Please enter your name to begin.");
             document.getElementById('login-screen').style.display = 'none';
             document.getElementById('academy-screen').style.display = 'block';
-            document.getElementById('welcome-msg').innerText = "Student: " + userName;
+            document.getElementById('welcome-msg').innerText = "STUDENT: " + userName.toUpperCase();
+            setTurkishGreeting();
+            renderGrid();
         }
 
         function openModule(index) {
             const m = modules[index];
-            document.getElementById('module-content').innerHTML = `<h2>${m.title}</h2>${m.content}`;
+            document.getElementById('module-content').innerHTML = m.content;
             document.getElementById('content-viewer').style.display = 'block';
             completedModules.add(index);
-            if(completedModules.size === totalModules) {
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const percent = (completedModules.size / modules.length) * 100;
+            document.getElementById('progress-fill').style.width = percent + '%';
+            if(completedModules.size === modules.length) {
                 document.getElementById('cert-section').style.display = 'block';
             }
         }
 
         function closeModule() {
             document.getElementById('content-viewer').style.display = 'none';
+            renderGrid();
             window.scrollTo(0,0);
         }
 
@@ -269,46 +370,64 @@
             const canvas = document.getElementById('certCanvas');
             const ctx = canvas.getContext('2d');
 
-            // Background
-            ctx.fillStyle = '#050505';
-            ctx.fillRect(0, 0, 800, 600);
+            // High Resolution Background
+            const gradient = ctx.createLinearGradient(0, 0, 1600, 1200);
+            gradient.addColorStop(0, '#050505');
+            gradient.addColorStop(1, '#0a0a0a');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 1600, 1200);
             
-            // Border
+            // Modern Borders
             ctx.strokeStyle = '#007aff';
-            ctx.lineWidth = 20;
-            ctx.strokeRect(40, 40, 720, 520);
+            ctx.lineWidth = 40;
+            ctx.strokeRect(60, 60, 1480, 1080);
+            ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(80, 80, 1440, 1040);
 
             // Text
-            ctx.fillStyle = 'white';
             ctx.textAlign = 'center';
-            
-            ctx.font = 'bold 40px Inter';
-            ctx.fillText('CERTIFICATE OF EXCELLENCE', 400, 150);
-            
-            ctx.font = '20px Inter';
-            ctx.fillStyle = '#888';
-            ctx.fillText('This is to certify that', 400, 220);
-            
-            ctx.font = 'italic bold 45px Inter';
-            ctx.fillStyle = '#007aff';
-            ctx.fillText(userName.toUpperCase(), 400, 300);
-            
-            ctx.font = '20px Inter';
-            ctx.fillStyle = '#888';
-            ctx.fillText('has successfully completed the program', 400, 370);
-            
-            ctx.font = 'bold 25px Inter';
             ctx.fillStyle = 'white';
-            ctx.fillText('NEURAL STRATEGIC TRANSFORMATION', 400, 420);
+            
+            ctx.font = '800 50px Space Grotesk';
+            ctx.fillText('NEURALFOCUSAI ACADEMY', 800, 200);
+            
+            ctx.font = '300 30px Inter';
+            ctx.fillStyle = '#888';
+            ctx.fillText('OFFICIAL STRATEGIC CERTIFICATION', 800, 260);
+            
+            ctx.font = '700 90px Space Grotesk';
+            ctx.fillStyle = '#007aff';
+            ctx.fillText('DIPLOMA OF EXCELLENCE', 800, 450);
+            
+            ctx.font = '300 35px Inter';
+            ctx.fillStyle = '#888';
+            ctx.fillText('This prestigious award is presented to', 800, 550);
+            
+            ctx.font = '800 80px Space Grotesk';
+            ctx.fillStyle = 'white';
+            ctx.fillText(userName.toUpperCase(), 800, 680);
+            
+            ctx.font = '300 30px Inter';
+            ctx.fillStyle = '#888';
+            ctx.fillText('for successfully mastering the curriculum of', 800, 780);
+            
+            ctx.font = '700 45px Inter';
+            ctx.fillStyle = 'white';
+            ctx.fillText('NEURAL STRATEGIC TRANSFORMATION', 800, 850);
 
-            ctx.font = '15px Inter';
+            ctx.font = 'italic 25px Inter';
             ctx.fillStyle = '#444';
-            ctx.fillText('Issued by NeuralFocusAI Academy - 2026', 400, 520);
+            ctx.fillText('Authorized by NeuralFocusAI Intelligence Center - 2026', 800, 1050);
 
-            // Download
+            // Watermark
+            ctx.font = '800 200px Space Grotesk';
+            ctx.fillStyle = 'rgba(0, 122, 255, 0.03)';
+            ctx.fillText('NEURAL', 800, 650);
+
             const link = document.createElement('a');
-            link.download = 'NeuralFocusAI_Certificate.png';
-            link.href = canvas.toDataURL();
+            link.download = `NeuralFocusAI_Certificate_${userName}.png`;
+            link.href = canvas.toDataURL('image/png', 1.0);
             link.click();
         }
     </script>
