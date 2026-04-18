@@ -14,6 +14,7 @@
             --text-main: #ffffff;
             --text-dim: #b0b0b0;
             --glass-border: rgba(255, 255, 255, 0.1);
+            --gold: #d4af37;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -22,14 +23,13 @@
             font-family: 'Inter', sans-serif; 
             background-color: var(--bg-color); 
             color: var(--text-main); 
-            line-height: 1.7;
+            line-height: 1.8;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, h3, .logo-box { font-family: 'Space+Grotesk', sans-serif; }
+        h1, h2, h3, .logo-box { font-family: 'Space Grotesk', sans-serif; }
 
-        /* --- BACKGROUND ANIMATION --- */
         .bg-glow {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -116,21 +116,10 @@
         }
 
         .progress-bar-container {
-            width: 100%;
-            height: 4px;
-            background: #222;
-            margin-top: 20px;
-            border-radius: 10px;
-            overflow: hidden;
+            width: 100%; height: 4px; background: #222; margin-top: 20px; border-radius: 10px; overflow: hidden;
         }
 
-        #progress-fill {
-            width: 0%;
-            height: 100%;
-            background: var(--accent-color);
-            transition: 0.5s ease;
-            box-shadow: 0 0 10px var(--accent-glow);
-        }
+        #progress-fill { width: 0%; height: 100%; background: var(--accent-color); transition: 0.5s ease; box-shadow: 0 0 10px var(--accent-glow); }
 
         .course-grid {
             margin-top: 40px;
@@ -172,12 +161,13 @@
             overflow-y: auto;
         }
 
-        .content-body { max-width: 800px; margin: 0 auto; }
-        .content-body h2 { font-size: 2.5rem; margin-bottom: 30px; color: var(--accent-color); }
-        .content-body p { margin-bottom: 25px; font-size: 1.1rem; color: #ddd; }
+        .content-body { max-width: 850px; margin: 0 auto; }
+        .content-body h2 { font-size: 2.5rem; margin-bottom: 30px; color: var(--accent-color); border-bottom: 1px solid #333; padding-bottom: 15px; }
+        .content-body p { margin-bottom: 25px; font-size: 1.15rem; color: #ececec; text-align: justify; }
         .content-body strong { color: var(--accent-color); }
+        .content-body ul { margin-bottom: 30px; padding-left: 20px; }
+        .content-body li { margin-bottom: 12px; color: var(--text-dim); font-size: 1.1rem; }
 
-        /* --- CERTIFICATE SECTION --- */
         #cert-section {
             margin-top: 60px;
             text-align: center;
@@ -194,13 +184,7 @@
             border-top: 1px solid var(--glass-border);
         }
 
-        footer a { 
-            color: var(--accent-color); 
-            text-decoration: none; 
-            margin: 0 15px; 
-            font-weight: 600;
-            transition: 0.3s;
-        }
+        footer a { color: var(--accent-color); text-decoration: none; margin: 0 15px; font-weight: 600; transition: 0.3s; }
         footer a:hover { text-shadow: 0 0 10px var(--accent-glow); }
 
         canvas { display: none; }
@@ -213,10 +197,10 @@
 
     <div id="login-screen">
         <div class="logo-box">NeuralFocus<span>AI</span></div>
-        <p style="color: var(--text-dim); letter-spacing: 2px;">ACADEMY • ELITE TRAINING</p>
+        <p style="color: var(--text-dim); letter-spacing: 2px;">STRATEGIC EXCELLENCE ACADEMY</p>
         <div class="input-group">
-            <input type="text" id="user-name" placeholder="Enter Full Name">
-            <button class="btn-main" onclick="startAcademy()">Initialize Training</button>
+            <input type="text" id="user-name" placeholder="Full Name (for Diploma)">
+            <button class="btn-main" onclick="startAcademy()">Initialize Masterclass</button>
         </div>
     </div>
 
@@ -237,38 +221,37 @@
 
         <section style="margin-top: 50px;">
             <h1 style="font-size: 2.2rem; margin-bottom: 10px;">The Neural Path</h1>
-            <p style="color: var(--text-dim);">Complete the curriculum to unlock your professional certification.</p>
+            <p style="color: var(--text-dim);">Master the architectural principles of AI to dominate the 2026 commercial landscape.</p>
         </section>
 
-        <div class="course-grid" id="module-grid">
-            </div>
+        <div class="course-grid" id="module-grid"></div>
 
         <div id="cert-section">
-            <div style="background: linear-gradient(145deg, #111, #050505); padding: 40px; border-radius: 25px; border: 1px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 122, 255, 0.2);">
-                <h2 style="margin-bottom: 10px;">Curriculum Completed</h2>
-                <p style="color: var(--text-dim); margin-bottom: 30px;">Your strategic intelligence certification is now available.</p>
-                <button class="btn-main" onclick="generateCertificate()">Download Diploma</button>
+            <div style="background: linear-gradient(145deg, #111, #050505); padding: 50px; border-radius: 25px; border: 1px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 122, 255, 0.2);">
+                <h2 style="margin-bottom: 10px;">Transformation Complete</h2>
+                <p style="color: var(--text-dim); margin-bottom: 30px;">Your credentials have been verified. You are now a Certified Neural Strategist.</p>
+                <button class="btn-main" style="max-width: 400px;" onclick="generateCertificate()">Download Official Diploma</button>
             </div>
         </div>
 
         <footer>
-            <p style="font-size: 0.9rem; margin-bottom: 15px;">&copy; 2026 NeuralFocusAI. Powered by Neural Strategic Intelligence.</p>
+            <p style="font-size: 0.9rem; margin-bottom: 15px;">&copy; 2026 NeuralFocusAI. Proprietary Strategic Content.</p>
             <div>
                 <a href="https://wa.me/542246496971">WhatsApp</a>
-                <a href="mailto:menteglobalempresarial@gmail.com">Contact Support</a>
-                <a href="https://lucas12981.github.io/NeuralfocusIA/">Main Hub</a>
+                <a href="mailto:menteglobalempresarial@gmail.com">Corporate Support</a>
+                <a href="https://lucas12981.github.io/NeuralfocusIA/">Portal Hub</a>
             </div>
         </footer>
     </div>
 
     <div id="content-viewer">
         <div class="content-body">
-            <button onclick="closeModule()" style="background: none; border: none; color: var(--accent-color); font-weight: 700; margin-bottom: 30px; cursor: pointer; font-size: 1rem;">&larr; RETURN TO DASHBOARD</button>
+            <button onclick="closeModule()" style="background: none; border: none; color: var(--accent-color); font-weight: 800; margin-bottom: 30px; cursor: pointer; font-size: 1rem; letter-spacing: 1px;">&larr; BACK TO DASHBOARD</button>
             <div id="module-content"></div>
         </div>
     </div>
 
-    <canvas id="certCanvas" width="1600" height="1200"></canvas>
+    <canvas id="certCanvas" width="2000" height="1414"></canvas>
 
     <script>
         let userName = "";
@@ -276,46 +259,66 @@
 
         const modules = [
             {
-                title: "The Genesis: The Architecture of Thought",
-                desc: "Explore the evolution of AI from Turing's logic to modern neural networks.",
-                content: `<h2>The Genesis of Machine Intelligence</h2>
-                          <p>Artificial Intelligence began as a philosophical question: <strong>Can machines think?</strong> In 1950, Alan Turing proposed a test that changed everything. Today, we don't just ask if they think; we ask how they can <strong>outperform</strong> our logic.</p>
-                          <p>From the first "Electronic Brains" to the massive <strong>Neural Networks</strong> of 2026, the goal has been the same: to process data with the complexity of a human brain but with the speed of light.</p>
-                          <p>For a business, understanding this history is crucial. It proves that AI isn't a temporary trend, but a fundamental evolution of human productivity. You are not just using a tool; you are adopting a <strong>new form of strategic energy</strong>.</p>`
+                title: "01. The Neural Genesis",
+                desc: "The leap from human logic to autonomous machine intuition.",
+                content: `<h2>The Architecture of Synthetic Thought</h2>
+                          <p>In 1950, Alan Turing proposed a radical test: <strong>Could a machine simulate a human mind?</strong> For over 70 years, this was a philosophical dream. Today, in 2026, it is the fundamental engine of the global economy.</p>
+                          <p>The transition from "Electronic Brains" to <strong>Massive Neural Networks</strong> represents the most significant shift in human productivity. We have moved from rule-based systems (where we tell the computer what to do) to learning-based systems (where the machine discovers <em>how</em> to do it better than we can).</p>
+                          <p><strong>Strategic Insight:</strong> For a modern business, understanding this genesis is not a history lesson—it is a competitive necessity. You are no longer just using a tool; you are integrating <strong>synthetic energy</strong> that processes data at light speed. Those who fail to adopt this energy are effectively choosing to compete in a digital age using analog muscles.</p>
+                          <ul>
+                            <li><strong>Pattern Recognition:</strong> The ability to see market shifts before they manifest.</li>
+                            <li><strong>Moore's Law 2.0:</strong> How intelligence now scales exponentially, not linearly.</li>
+                            <li><strong>The Human-AI Synergy:</strong> Moving from replacement to enhancement.</li>
+                          </ul>`
             },
             {
-                title: "Neural Decoding: Beyond the Algorithm",
-                desc: "Demystifying Machine Learning and how it processes commercial data.",
+                title: "02. Decoding the Digital Core",
+                desc: "Understanding Machine Learning as a refinery for raw data profit.",
                 content: `<h2>Decoding the Neural System</h2>
-                          <p>How does AI "learn"? It doesn't follow rigid instructions; it identifies patterns. <strong>Machine Learning</strong> allows a system to analyze millions of sales, customer behaviors, and market fluctuations to find the "hidden signal" in the noise.</p>
-                          <p>Imagine a digital brain that remembers every single interaction your business has ever had. This brain can predict <strong>what your customer wants before they even know they want it</strong>.</p>
-                          <p>At this level, "Big Data" is no longer a problem; it becomes your primary weapon. Strategic intelligence is the art of turning raw information into <strong>profitable decisions</strong>.</p>`
+                          <p>Machine Learning is not magic; it is the art of <strong>Turning Noise into Signal</strong>. Every sale, every click, and every customer complaint is raw data. Without AI, it is just digital trash. With a NeuralFocus architecture, it becomes a <strong>predictive weapon</strong>.</p>
+                          <p>Imagine a digital brain that remembers every single interaction your business has ever had. It doesn't get tired, it doesn't have biases, and it identifies trends across millions of variables simultaneously. This is the difference between "guessing" your next marketing move and <strong>knowing</strong> it with mathematical certainty.</p>
+                          <p><strong>Profitable Decisions:</strong> At this level, strategic intelligence allows you to automate high-level decision-making. We are building systems that don't just report what happened, but <strong>advise on what must happen next</strong> to maximize ROI.</p>
+                          <ul>
+                            <li><strong>Neural Layers:</strong> How deep learning mimics biological decision-making.</li>
+                            <li><strong>Big Data vs. Smart Data:</strong> Why quality of insight beats quantity of storage.</li>
+                            <li><strong>Autonomous Optimization:</strong> Systems that fix themselves in real-time.</li>
+                          </ul>`
             },
             {
-                title: "Universal Scale: The Democratization of Power",
-                desc: "Why AI is the ultimate equalizer for small shops and global empires.",
-                content: `<h2>Scale Does Not Matter</h2>
-                          <p>A global myth suggests that AI is only for tech giants. <strong>This is a strategic error.</strong> In reality, a local merchant or a family business has the most to gain from neural implementation.</p>
-                          <p>While large corporations use AI to manage complexity, small businesses use it to <strong>eliminate limitations</strong>. Automation allows you to operate like a company of 50 people with only a smartphone.</p>
-                          <p>In 2026, the competition is not between the "Big" and the "Small", but between the <strong>Intelligent</strong> and the <strong>Traditional</strong>. NeuralFocusAI bridges that gap for every sector.</p>`
+                title: "03. The Great Equalizer",
+                desc: "Why small businesses are the true winners of the AI revolution.",
+                content: `<h2>The Democratization of Global Power</h2>
+                          <p>A dangerous myth suggests that AI is only for Silicon Valley giants. <strong>The opposite is true.</strong> In 2026, AI is the ultimate equalizer. It allows a local merchant or a boutique agency to operate with the logistical and analytical power of a Fortune 500 company.</p>
+                          <p>Small businesses traditionally struggled with <strong>limitations of scale</strong>—not enough staff, not enough time, not enough reach. AI eliminates these barriers. Automation allows you to operate like a company of 50 people using only a smartphone and the right protocols.</p>
+                          <p><strong>The New Reality:</strong> The competition is no longer between "Big" and "Small". It is between the <strong>Intelligent</strong> and the <strong>Traditional</strong>. By leveraging NeuralFocusAI, you bypass decades of traditional growth and jump straight to the top of your industry's efficiency curve.</p>
+                          <ul>
+                            <li><strong>Zero-Headcount Scaling:</strong> Expanding operations without increasing payroll.</li>
+                            <li><strong>Global Reach:</strong> Breaking geographical boundaries with localized AI agents.</li>
+                            <li><strong>Legacy Transformation:</strong> Turning traditional models into digital-first empires.</li>
+                          </ul>`
             },
             {
-                title: "The NeuralFocus Protocol: Future Implementation",
-                desc: "Our methodology to transform your industry with AI-driven growth.",
-                content: `<h2>NeuralFocusAI Strategy</h2>
-                          <p>We don't just provide technology; we provide <strong>Transformation</strong>. Our protocol analyzes your specific business sector—whether it's retail, services, or manufacturing—to find where AI can create a 10x growth.</p>
-                          <p>By leveraging our expertise, businesses transition from manual struggle to <strong>autonomous success</strong>. We are the bridge between your current operation and your global potential.</p>
-                          <p>You have now completed the fundamental training. You possess the vision to lead the <strong>Neural Revolution</strong>. Your certification awaits.</p>`
+                title: "04. The NeuralFocus Protocol",
+                desc: "The final step: Implementing total autonomous success.",
+                content: `<h2>NeuralFocusAI Strategy & Execution</h2>
+                          <p>Knowledge without implementation is merely a hobby. The <strong>NeuralFocus Protocol</strong> is our proprietary methodology for business transformation. We don't just "install" AI; we perform a deep mapping of your commercial soul to find the 10x growth levers.</p>
+                          <p>Whether you are in the Turkish market, the Argentinian landscape, or trading globally, the protocol ensures that AI is injected into the <strong>profit-generating core</strong> of your business. We focus on Sales Assistants that never close, Lead Generation that never sleeps, and Management that never forgets.</p>
+                          <p><strong>Your Evolution:</strong> You have now completed the fundamental training. You possess the vision to lead the <strong>Neural Revolution</strong>. You are no longer an observer; you are an architect of the new world.</p>
+                          <ul>
+                            <li><strong>Mapping Stage:</strong> Identifying friction in your current workflow.</li>
+                            <li><strong>Automation Stage:</strong> Replacing manual labor with neural efficiency.</li>
+                            <li><strong>Growth Stage:</strong> Scaling the autonomous model for maximum legacy.</li>
+                          </ul>`
             }
         ];
 
         function setTurkishGreeting() {
             const hour = new Date().getHours();
             let greeting = "";
-            if (hour >= 5 && hour < 12) greeting = "Günaydın (Good Morning)";
-            else if (hour >= 12 && hour < 18) greeting = "Tünaydın (Good Afternoon)";
-            else greeting = "İyi Akşamlar (Good Evening)";
-            document.getElementById('greeting-turkish').innerText = greeting;
+            if (hour >= 5 && hour < 12) greeting = "Günaydın";
+            else if (hour >= 12 && hour < 18) greeting = "Tünaydın";
+            else greeting = "İyi Akşamlar";
+            document.getElementById('greeting-turkish').innerText = `${greeting} | Hoş Geldiniz`;
         }
 
         function renderGrid() {
@@ -323,12 +326,12 @@
             grid.innerHTML = modules.map((m, i) => `
                 <div class="module-card" onclick="openModule(${i})">
                     <div>
-                        <span style="font-size: 0.7rem; color: #555; font-weight: 800;">0${i+1}</span>
+                        <span style="font-size: 0.7rem; color: #555; font-weight: 800; letter-spacing: 2px;">LECTURE 0${i+1}</span>
                         <h3>${m.title}</h3>
                         <p>${m.desc}</p>
                     </div>
-                    <div style="margin-top: 20px; font-size: 0.8rem; font-weight: 700; color: ${completedModules.has(i) ? '#00ff88' : '#333'}">
-                        ${completedModules.has(i) ? '✓ COMPLETED' : '→ START LESSON'}
+                    <div style="margin-top: 20px; font-size: 0.8rem; font-weight: 800; color: ${completedModules.has(i) ? '#00ff88' : 'var(--accent-color)'}">
+                        ${completedModules.has(i) ? '✓ ACCOMPLISHED' : '→ BEGIN TRAINING'}
                     </div>
                 </div>
             `).join('');
@@ -336,17 +339,16 @@
 
         function startAcademy() {
             userName = document.getElementById('user-name').value.trim();
-            if(!userName) return alert("Please enter your name to begin.");
+            if(!userName) return alert("Full Name is required for certification records.");
             document.getElementById('login-screen').style.display = 'none';
             document.getElementById('academy-screen').style.display = 'block';
-            document.getElementById('welcome-msg').innerText = "STUDENT: " + userName.toUpperCase();
+            document.getElementById('welcome-msg').innerText = "ACCREDITED: " + userName.toUpperCase();
             setTurkishGreeting();
             renderGrid();
         }
 
         function openModule(index) {
-            const m = modules[index];
-            document.getElementById('module-content').innerHTML = m.content;
+            document.getElementById('module-content').innerHTML = modules[index].content;
             document.getElementById('content-viewer').style.display = 'block';
             completedModules.add(index);
             updateProgress();
@@ -370,63 +372,72 @@
             const canvas = document.getElementById('certCanvas');
             const ctx = canvas.getContext('2d');
 
-            // High Resolution Background
-            const gradient = ctx.createLinearGradient(0, 0, 1600, 1200);
-            gradient.addColorStop(0, '#050505');
-            gradient.addColorStop(1, '#0a0a0a');
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, 1600, 1200);
+            // Background Deep Black
+            ctx.fillStyle = '#050505';
+            ctx.fillRect(0, 0, 2000, 1414);
             
-            // Modern Borders
+            // Premium Border
             ctx.strokeStyle = '#007aff';
-            ctx.lineWidth = 40;
-            ctx.strokeRect(60, 60, 1480, 1080);
-            ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+            ctx.lineWidth = 60;
+            ctx.strokeRect(80, 80, 1840, 1254);
+
+            // Inner Accent Border
+            ctx.strokeStyle = 'rgba(255,255,255,0.05)';
             ctx.lineWidth = 1;
-            ctx.strokeRect(80, 80, 1440, 1040);
+            ctx.strokeRect(110, 110, 1780, 1194);
 
-            // Text
             ctx.textAlign = 'center';
-            ctx.fillStyle = 'white';
             
-            ctx.font = '800 50px Space Grotesk';
-            ctx.fillText('NEURALFOCUSAI ACADEMY', 800, 200);
-            
-            ctx.font = '300 30px Inter';
+            // Header
             ctx.fillStyle = '#888';
-            ctx.fillText('OFFICIAL STRATEGIC CERTIFICATION', 800, 260);
-            
-            ctx.font = '700 90px Space Grotesk';
-            ctx.fillStyle = '#007aff';
-            ctx.fillText('DIPLOMA OF EXCELLENCE', 800, 450);
-            
             ctx.font = '300 35px Inter';
-            ctx.fillStyle = '#888';
-            ctx.fillText('This prestigious award is presented to', 800, 550);
-            
-            ctx.font = '800 80px Space Grotesk';
-            ctx.fillStyle = 'white';
-            ctx.fillText(userName.toUpperCase(), 800, 680);
-            
-            ctx.font = '300 30px Inter';
-            ctx.fillStyle = '#888';
-            ctx.fillText('for successfully mastering the curriculum of', 800, 780);
-            
-            ctx.font = '700 45px Inter';
-            ctx.fillStyle = 'white';
-            ctx.fillText('NEURAL STRATEGIC TRANSFORMATION', 800, 850);
+            ctx.fillText('OFFICIAL STRATEGIC CERTIFICATION', 1000, 250);
 
-            ctx.font = 'italic 25px Inter';
-            ctx.fillStyle = '#444';
-            ctx.fillText('Authorized by NeuralFocusAI Intelligence Center - 2026', 800, 1050);
+            ctx.fillStyle = 'white';
+            ctx.font = '800 65px Space Grotesk';
+            ctx.fillText('NEURALFOCUSAI ACADEMY', 1000, 340);
+            
+            // Main Title
+            ctx.fillStyle = '#007aff';
+            ctx.font = '700 110px Space Grotesk';
+            ctx.fillText('DIPLOMA OF EXCELLENCE', 1000, 560);
+            
+            ctx.fillStyle = '#888';
+            ctx.font = '300 40px Inter';
+            ctx.fillText('This prestigious credential is hereby granted to', 1000, 680);
+            
+            // Name
+            ctx.fillStyle = 'white';
+            ctx.font = '800 100px Space Grotesk';
+            ctx.fillText(userName.toUpperCase(), 1000, 820);
+            
+            // Body
+            ctx.fillStyle = '#888';
+            ctx.font = '400 35px Inter';
+            ctx.fillText('For demonstrating mastery in AI architecture and', 1000, 930);
+            ctx.fillStyle = 'white';
+            ctx.font = '700 50px Inter';
+            ctx.fillText('NEURAL STRATEGIC TRANSFORMATION', 1000, 1010);
 
-            // Watermark
-            ctx.font = '800 200px Space Grotesk';
+            // Signatures & Stamp
+            ctx.fillStyle = '#333';
+            ctx.font = 'italic 30px Inter';
+            ctx.fillText('NeuralFocusAI Intelligence Center - Q2 2026', 1000, 1230);
+            
+            // Security ID
+            ctx.font = '800 22px Inter';
+            ctx.fillStyle = '#222';
+            const verifyID = "NF-" + Math.random().toString(36).substr(2, 9).toUpperCase();
+            ctx.fillText('VERIFICATION ID: ' + verifyID, 1000, 1310);
+
+            // Watermark Logo
+            ctx.font = '900 250px Space Grotesk';
             ctx.fillStyle = 'rgba(0, 122, 255, 0.03)';
-            ctx.fillText('NEURAL', 800, 650);
+            ctx.fillText('NEURAL', 1000, 750);
 
+            // Download
             const link = document.createElement('a');
-            link.download = `NeuralFocusAI_Certificate_${userName}.png`;
+            link.download = `NeuralFocusAI_Diploma_${userName.replace(/\s+/g, '_')}.png`;
             link.href = canvas.toDataURL('image/png', 1.0);
             link.click();
         }
